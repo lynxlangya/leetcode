@@ -11,9 +11,19 @@
 // }
 
 /** 优雅一下 */
+// export default (str) => {
+//   return str
+//     .split(' ')
+//     .map((item) => {
+//       return item.split('').reverse().join('')
+//     })
+//     .join(' ')
+// }
+
+/** match 正则 */
 export default (str) => {
   return str
-    .split(' ')
+    .match(/[\w']+/g)
     .map((item) => {
       return item.split('').reverse().join('')
     })
