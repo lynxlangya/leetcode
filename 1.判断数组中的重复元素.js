@@ -78,14 +78,19 @@ console.log(d); // [ 1, 2, 3 ]
  */
 function supplement(a, b) {
   const arr = a
-    .filter((item) => {
-      return !(b.indexOf(item) > -1);
-    })
+    .filter((item) => !(b.indexOf(item) > -1))
     .concat(
-      b.filter((val) => {
-        return !(a.indexOf(val) > -1);
-      })
+      b.filter((val) => !(a.indexOf(val) > -1))
     );
   console.log(arr); // [ 1, 2, 3, 5, 6 ]
 }
 supplement(a, b);
+
+/** new Set 实现补集 */
+function complement(a, b) {
+  a = new Set(a)
+  b = new Set(b)
+  const arr = [...a].filter(item => !b.has(item)).concat([...b].filter(val => !a.has(val)))
+  console.log(arr); // [ 1, 2, 3, 5, 6 ]
+}
+complement(a, b)
