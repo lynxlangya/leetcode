@@ -46,16 +46,16 @@ function insertion(a, b) {
 }
 console.log(insertion(a, b)); // [4, 7]
 
-/** 
+/**
  * Set 查看数据中的并集、去重
  */
 function union(a, b) {
-  const newArr = [...new Set([...a, ...b])]
-  console.log(newArr);  // [ 1, 2, 3, 4, 7, 5, 6 ]
+  const newArr = [...new Set([...a, ...b])];
+  console.log(newArr); // [ 1, 2, 3, 4, 7, 5, 6 ]
 }
-union(a, b)
+union(a, b);
 
-/** 
+/**
  * a 与 b 的差集
  */
 function difference(a, b) {
@@ -66,7 +66,26 @@ function difference(a, b) {
   });
   return bool;
 }
-console.log(difference(a, b));  // [ 1, 2, 3 ]
+console.log(difference(a, b)); // [ 1, 2, 3 ]
 
-var d = a.filter(function(v){ return b.indexOf(v) == -1 })
+var d = a.filter(function (v) {
+  return b.indexOf(v) == -1;
+});
 console.log(d); // [ 1, 2, 3 ]
+
+/**
+ * a 与 b 的补集
+ */
+function supplement(a, b) {
+  const arr = a
+    .filter((item) => {
+      return !(b.indexOf(item) > -1);
+    })
+    .concat(
+      b.filter((val) => {
+        return !(a.indexOf(val) > -1);
+      })
+    );
+  console.log(arr); // [ 1, 2, 3, 5, 6 ]
+}
+supplement(a, b);
