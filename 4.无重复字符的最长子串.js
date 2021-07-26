@@ -24,12 +24,10 @@ function lengthOfLongestSubstring(str) {
     if (index !== -1) {
       arr.splice(0, index + 1);
     }
-    // console.log(str.charAt(i));
     arr.push(str.charAt(i));
-    console.log(arr);
     max = Math.max(arr.length, max);
   }
-  console.log(max);
+  console.log(max); // 4
 }
 
 lengthOfLongestSubstring(s);
