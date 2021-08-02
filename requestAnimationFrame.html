@@ -15,27 +15,45 @@
   <body>
     <div id="some">Hello</div>
     <script>
-      const element = document.getElementById('some');
-      let start;
+      // const element = document.getElementById('some');
+      // let start;
 
-      function step(timestamp) {
-        console.log(timestamp, start);
-        // console.log(start);
-        if (start === undefined) start = timestamp;
-        const elapsed = timestamp - start;
-        console.log(Math.min(0.1 * elapsed, 200));
+      // function step(timestamp) {
+      //   console.log(timestamp, start);
+      //   // console.log(start);
+      //   if (start === undefined) start = timestamp;
+      //   const elapsed = timestamp - start;
+      //   console.log(Math.min(0.1 * elapsed, 200));
 
-        //这里使用`Math.min()`确保元素刚好停在200px的位置。
-        element.style.transform =
-          'translateX(' + Math.min(0.1 * elapsed, 200) + 'px)';
+      //   //这里使用`Math.min()`确保元素刚好停在200px的位置。
+      //   element.style.transform =
+      //     'translateX(' + Math.min(0.1 * elapsed, 200) + 'px)';
 
-        if (elapsed < 2000) {
-          // 在两秒后停止动画
-          window.requestAnimationFrame(step);
+      //   if (elapsed < 2000) {
+      //     // 在两秒后停止动画
+      //     window.requestAnimationFrame(step);
+      //   }
+      // }
+
+      // window.requestAnimationFrame(step);
+
+      /** 
+       *  https://juejin.cn/post/6991297852462858277?from=main_page
+       */
+
+      (() => {
+        function test(timestamp) {
+          // let myRef;
+          // myRef = requestAnimationFrame(test);
+          console.log(`🚀🚀hello ~ requestAnimationFrame ${timestamp}`);
+          if (timestamp < 2000) {
+            console.log(`%c ---`, 'color: #4CAF50; font-weight: bold');
+            // cancelAnimationFrame(myRef)
+            requestAnimationFrame(test);
+          }
         }
-      }
-
-      window.requestAnimationFrame(step);
+        requestAnimationFrame(test);
+      })();
     </script>
   </body>
 </html>
