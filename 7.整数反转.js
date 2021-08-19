@@ -2,6 +2,8 @@
  * @lc app=leetcode.cn id=7 lang=javascript
  *
  * [7] 整数反转
+ * 32位的有符号整数
+ * https://blog.csdn.net/weixin_42429956/article/details/112141991
  */
 
 // @lc code=start
