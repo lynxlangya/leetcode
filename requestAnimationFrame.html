@@ -7,13 +7,16 @@
     <title>requestAnimationFrame</title>
     <style>
       #some {
-        width: 50px;
+        /* width: 10px; */
+        height: 20px;
         background: red;
       }
     </style>
   </head>
   <body>
-    <div id="some">Hello</div>
+    <div id="some" style="width: 10px">Hello</div>
+    <button id="action">action</button>
+    <button id="quit">stop</button>
     <script>
       // const element = document.getElementById('some');
       // let start;
@@ -41,19 +44,38 @@
        *  https://juejin.cn/post/6991297852462858277?from=main_page
        */
 
-      (() => {
-        function test(timestamp) {
-          // let myRef;
-          // myRef = requestAnimationFrame(test);
-          console.log(`🚀🚀hello ~ requestAnimationFrame ${timestamp}`);
-          if (timestamp < 2000) {
-            console.log(`%c ---`, 'color: #4CAF50; font-weight: bold');
-            // cancelAnimationFrame(myRef)
-            requestAnimationFrame(test);
-          }
+      // (() => {
+      //   function test(timestamp) {
+      //     requestAnimationFrame(test);
+      //     console.log(`🚀🚀hello ~ requestAnimationFrame ${timestamp}`);
+      //     if (timestamp < 2000) {
+      //       console.log(`%c ---`, 'color: #4CAF50; font-weight: bold');
+      //       cancelAnimationFrame(myRef)
+      //       // requestAnimationFrame(test);
+      //     }
+      //   }
+      //   // requestAnimationFrame(test);
+      // })();
+      let stop = false;
+      const fn = function () {
+        let d = document.querySelector('#some')
+        const n = parseInt(d.style.width)
+        if (n < 300 && !stop) {
+          requestAnimationFrame(fn)
+          d.style.width = n + 1 + 'px';
+        } else {
+          window.cancelAnimationFrame(fn)
         }
-        requestAnimationFrame(test);
-      })();
+      };
+      /** 开始动画 */
+      action.addEventListener('click',() => {
+        stop = false;
+        fn();
+      })
+      /** 中断动画 */
+      quit.addEventListener('click',() => {
+        stop = true;
+      })
     </script>
   </body>
 </html>
