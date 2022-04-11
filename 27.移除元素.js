@@ -14,6 +14,9 @@
  * 1. 循环遍历数组，如果当前元素不等于val, 则将当前元素放到i位置，i++
  * 2. 如果当前元素等于val, 则i不变，j++
  * 3. 循环结束，j的值就是移除的元素的个数，i的值就是需要保留的元素的个数
+ * 
+ * ps: 如果不考虑原地算法限制，filter 就可以实现
+ * return nums.filter(item => item !== val).length
  */
 var removeElement = function (nums, val) {
     let i = 0;
